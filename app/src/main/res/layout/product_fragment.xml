@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="isLoading"
+            type="boolean"/>
+        <variable
+            name="productViewModel"
+            type="com.demo.tangminglong.architecutresample.viewmodel.ProductViewModel"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            layout="@layout/product_item"
+            app:product="@{productViewModel.product}"
+            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/loading_comments_tv"
+                android:text="@string/loading_comments"
+                app:visibleGone="@{isLoading}"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/comment_list"
+                android:contentDescription="@string/cd_comments_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="LinearLayoutManager"
+                app:visibleGone="@{!isLoading}"
+                />
+        </FrameLayout>
+    </LinearLayout>
+</layout>
